@@ -15,8 +15,11 @@ experiment_name = 'rented_bikes'
 mlflow.set_experiment(experiment_name)
 
 # delete default experiment if exits
-if mlflow.get_experiment_by_name("Default").lifecycle_stage == 'active':
-    mlflow.delete_experiment("0")
+try:
+    if mlflow.get_experiment_by_name("Default").lifecycle_stage == 'active':
+        mlflow.delete_experiment("0")
+except Exception:
+    pass
 subprocess.run("mlflow gc", shell=True, check=False, stdout=subprocess.DEVNULL)
 
 # Model Hyper-parameters
