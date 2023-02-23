@@ -2,7 +2,8 @@ name: mlflow_example
 
 docker_env:
   image: mlflow_example
+  volumes: ["$PWD:/mlflow_example/"]
 
 entry_points:
   main:
-    command: "python3 train.py"
+    command: "python3 mlflow_example/train.py"
